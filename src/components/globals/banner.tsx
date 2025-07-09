@@ -7,7 +7,7 @@ function Banner({ ...props }: ComponentProps<"section">) {
     <section
       {...props}
       className={cn(
-        "relative z-0 flex h-[40rem] w-full items-center overflow-hidden rounded-md bg-black/[0.96] p-1 antialiased md:justify-center",
+        "relative z-0 flex h-[40rem] w-full items-center overflow-hidden rounded-md bg-black/[0.96] md:justify-center",
         props.className,
       )}
     />
@@ -44,7 +44,7 @@ Banner.Description = function ({ ...props }: ComponentProps<"p">) {
     <p
       {...props}
       className={cn(
-        "text-foreground/70 mx-auto mt-2 max-w-lg text-center text-base text-balance",
+        "text-foreground/70 mx-auto mt-2 max-w-lg text-center text-base",
         props.className,
       )}
     />
