@@ -6,7 +6,6 @@ import { Input } from "../ui/input";
 import { Separator } from "../ui/separator";
 
 function Footer() {
-    
   const footerLinks = [
     {
       text: "Feed",
@@ -23,8 +22,8 @@ function Footer() {
   ];
 
   return (
-    <footer className="text-muted-foreground border-t px-25 py-4 mt-auto">
-      <div className="grid grid-cols-1 items-center py-4 md:grid-cols-3">
+    <footer className="text-muted-foreground mt-auto border-t px-4 py-4 md:px-25">
+      <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-3 md:gap-0 md:py-4">
         <Logo className="size-30" />
 
         <div className="space-x-4">
