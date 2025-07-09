@@ -7,7 +7,7 @@ function Section({ className, children, ...props }: ComponentProps<"section">) {
       {...props}
       className={cn(
         "mx-auto px-4 py-12 md:max-w-[80rem] md:px-24 md:py-15",
-        className
+        className,
       )}
     >
       {children}
@@ -24,7 +24,7 @@ Section.Header = function SectionHeader({
       {...props}
       className={cn(
         "mx-auto mb-6 flex flex-col items-center gap-2 md:mb-10",
-        className
+        className,
       )}
     />
   );
@@ -39,7 +39,7 @@ Section.Title = function SectionTitle({
       {...props}
       className={cn(
         "text-center text-3xl font-bold md:text-4xl md:tracking-wide",
-        className
+        className,
       )}
     />
   );
@@ -54,7 +54,7 @@ Section.Description = function SectionDescription({
       {...props}
       className={cn(
         "text-muted-foreground max-w-[32rem] text-center text-sm leading-relaxed",
-        className
+        className,
       )}
     />
   );

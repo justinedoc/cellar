@@ -38,14 +38,15 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-
-  --font-sans: var(--font-space-grotesk);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+  --font-base: var(--font-base);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 }
 
 :root {
@@ -90,7 +91,7 @@
   --foreground: oklch(0.994 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.9851 0 0);
-  --popover: oklch(0.2686 0 0);
+  --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.9851 0 0);
   --primary: oklch(0.4549 0.2943 266.292);
   --primary-foreground: oklch(0.9219 0 0);
@@ -118,9 +119,7 @@
   --sidebar-accent-foreground: oklch(0.9851 0 0);
   --sidebar-border: oklch(0.2768 0 0);
   --sidebar-ring: oklch(0.4386 0 0);
-  --font-sans: Space Grotesk, serif;
-  --font-serif: Geist Mono, monospace;
-  --font-mono: Poppins, sans-serif;
+
   --radius: 0.625rem;
 }
 
@@ -131,6 +130,10 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  button {
+    cursor: pointer;
   }
 
   ::selection {
@@ -145,5 +148,16 @@
 
   ::-webkit-scrollbar-track {
     background: inherit;
+  }
+
+  @keyframes spotlight {
+    0% {
+      opacity: 0;
+      transform: translate(-72%, -62%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -40%) scale(1);
+    }
   }
 }
