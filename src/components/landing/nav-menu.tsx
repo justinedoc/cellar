@@ -21,7 +21,7 @@ type TItem = {
   to: string;
 };
 
-const resourcesNavItems: TItem[] = [
+export const resourcesNavItems: TItem[] = [
   {
     title: "Blog",
     content: "Read Our Latest Updates and articles",
@@ -38,7 +38,10 @@ const resourcesNavItems: TItem[] = [
 
 export default function NavMenu() {
   return (
-    <NavigationMenu viewport={false} className="text-muted-foreground">
+    <NavigationMenu
+      viewport={false}
+      className="text-muted-foreground hidden md:flex"
+    >
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
@@ -70,7 +73,7 @@ export default function NavMenu() {
 
               <div>
                 {resourcesNavItems.map((item) => (
-                  <Item {...item} />
+                  <Item key={item.title} {...item} />
                 ))}
               </div>
             </div>

@@ -11,7 +11,7 @@ const stats = [
 
 export default function StatsBanner() {
   return (
-    <section className="bg-foreground absolute bottom-0 left-0 mx-auto w-full overflow-hidden rounded-t-xl px-4 py-4 shadow-xl md:px-8">
+    <section className="bg-foreground bottom-0 left-0 mx-auto w-full overflow-hidden rounded-t-xl px-4 py-4 shadow-xl md:absolute md:px-8">
       <div className="relative flex flex-col items-center justify-between space-y-6 md:flex-row md:space-y-0">
         {stats.map(({ label, value, suffix, descriptor }) => (
           <motion.div

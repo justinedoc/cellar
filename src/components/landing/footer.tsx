@@ -23,7 +23,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="text-muted-foreground border-t px-25 py-4">
+    <footer className="text-muted-foreground border-t px-25 py-4 mt-auto">
       <div className="grid grid-cols-1 items-center py-4 md:grid-cols-3">
         <Logo className="size-30" />
 

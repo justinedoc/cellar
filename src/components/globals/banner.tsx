@@ -7,7 +7,7 @@ function Banner({ ...props }: ComponentProps<"section">) {
     <section
       {...props}
       className={cn(
-        "relative z-0 flex h-[40rem] w-full overflow-hidden rounded-md bg-black/[0.96] antialiased md:items-center md:justify-center",
+        "relative z-0 flex h-[40rem] w-full items-center overflow-hidden rounded-md bg-black/[0.96] antialiased md:justify-center",
         props.className,
       )}
     />
@@ -20,7 +20,7 @@ Banner.Header = function ({ ...props }: ComponentProps<typeof Box>) {
       {...props}
       wrap={false}
       className={cn(
-        "mx-auto flex-col items-center gap-4 text-center md:max-w-[45rem]",
+        "mx-auto flex-col items-center gap-4 text-center md:mt-20 md:max-w-[45rem]",
         props.className,
       )}
     />

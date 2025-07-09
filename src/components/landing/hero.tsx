@@ -15,11 +15,11 @@ function Hero() {
         <GridPattern />
 
         <Spotlight
-          className="-top-40 left-0 md:-top-10 md:left-20"
+          className="-top-20 -left-35 md:-top-10 md:left-20"
           fill="#1919f6"
         />
 
-        <Banner.Header className="mt-20">
+        <Banner.Header>
           <Link href={"#"}>
             <Tag>
               <TextShimmer className="font-mono text-sm" duration={2}>
@@ -52,11 +52,11 @@ function Hero() {
           src={"/images/hero-overlay.png"}
           alt="hero"
           loading="eager"
-          className="top-40 hidden w-[70%] md:block"
+          className="top-50 left-1/2 w-[120%] -translate-x-1/2 md:top-40 md:w-[70%]"
         />
       </Banner>
 
-      <div className="relative mx-auto mt-4 max-w-[60rem] md:mt-8">
+      <div className="relative mx-auto mt-4 md:max-w-[60rem] md:mt-8">
         <Image
           src={"/images/dashboard-img.png"}
           alt="Dashboard Image of cellar"

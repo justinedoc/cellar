@@ -3,7 +3,7 @@ import Navbar from "@/components/landing/navbar";
 
 function LandingPageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden grid">
       <Navbar />
       {children}
       <Footer />
