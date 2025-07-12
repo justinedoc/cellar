@@ -1,10 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardFooter } from "@/components/ui/card";
+import {
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Stepper } from "@/components/ui/stepper";
 import { sleep } from "@/lib/sleep";
-import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useState, useTransition } from "react";
@@ -90,7 +94,7 @@ export type TSignupDetailsSchema = z.infer<typeof SignupDetailsSchema>;
 export type TSignUpCredentialsSchema = z.infer<typeof SignUpCredentialsSchema>;
 
 function FormsWrapper() {
-  const [formStep, setFormStep] = useState(2);
+  const [formStep, setFormStep] = useState(1);
 
   const [isPending, startTransition] = useTransition();
 
@@ -146,14 +150,22 @@ function FormsWrapper() {
   };
 
   return (
-    <Card
-      className={cn("w-full bg-transparent backdrop-blur-2xl sm:w-[28rem]")}
-    >
+    <>
       <Stepper
         stepsNum={2}
         currentStep={formStep}
         className="mx-auto w-[85%] border-b px-8 pb-4 md:px-16"
       />
+
+      <CardHeader>
+        <CardTitle className="text-2xl font-bold md:text-3xl">
+          Sign Up
+        </CardTitle>
+        <CardDescription className="font-base">
+          Create account and Deploy in seconds
+        </CardDescription>
+      </CardHeader>
+
       {formStep === 1 && (
         <FormProvider {...SignupDetailsMethods}>
           <SignUpDetailsForm onSubmit={onSubmitSignupDetailsForm} />
@@ -162,6 +174,7 @@ function FormsWrapper() {
       {formStep === 2 && (
         <FormProvider {...SignUpCredentialsMethods}>
           <SignUpCredentialsForm
+            isSubmitting={isPending}
             onSubmit={onSubmitSignUpCredentialsForm}
             onHandlePrevStep={handlePrevStep}
           />
@@ -178,7 +191,7 @@ function FormsWrapper() {
           </Link>
         </p>
       </CardFooter>
-    </Card>
+    </>
   );
 }
 

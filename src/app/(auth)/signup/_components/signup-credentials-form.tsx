@@ -1,19 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { CardContent } from "@/components/ui/card";
 import {
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -21,8 +16,8 @@ import { Check, ChevronLeft, Eye, EyeOff, X } from "lucide-react";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import {
-    SignUpCredentialsFields,
-    TSignUpCredentialsSchema,
+  SignUpCredentialsFields,
+  TSignUpCredentialsSchema,
 } from "./forms-wrapper";
 
 function validatePassword(password: string) {
@@ -41,106 +36,97 @@ function validatePassword(password: string) {
 function SignUpCredentialsForm({
   onHandlePrevStep,
   onSubmit,
+  isSubmitting,
 }: {
   onHandlePrevStep: VoidFunction;
   onSubmit: (data: TSignUpCredentialsSchema) => void;
+  isSubmitting: boolean;
 }) {
   const form = useFormContext<TSignUpCredentialsSchema>();
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const passwordValue = form.watch("password");
   return (
-    <>
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold md:text-3xl">
-          Sign Up
-        </CardTitle>
-        <CardDescription className="font-base">
-          Create account and Deploy in seconds
-        </CardDescription>
-      </CardHeader>
-
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {SignUpCredentialsFields.slice(0, 2).map((f) => (
-              <FormField
-                key={f.name}
-                control={form.control}
-                name={f.name as keyof TSignUpCredentialsSchema}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{f.label}</FormLabel>
-                    <FormControl>
-                      <Input
-                        type={f.type}
-                        placeholder={f.placeholder}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            ))}
-
+    <CardContent>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {SignUpCredentialsFields.slice(0, 2).map((f) => (
             <FormField
+              key={f.name}
               control={form.control}
-              name="password"
+              name={f.name as keyof TSignUpCredentialsSchema}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>{f.label}</FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Input
-                        type={isPasswordHidden ? "password" : "text"}
-                        placeholder="Enter your password"
-                        {...field}
-                      />
-                      <span
-                        className="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer text-sm"
-                        onClick={() => setIsPasswordHidden((cur) => !cur)}
-                      >
-                        {isPasswordHidden ? <Eye /> : <EyeOff />}
-                      </span>
-                    </div>
-                  </FormControl>
-
-                  {/* Password Checks */}
-                  {passwordValue && (
-                    <PasswordChecks
-                      password={passwordValue}
-                      checks={validatePassword}
+                    <Input
+                      type={f.type}
+                      placeholder={f.placeholder}
+                      {...field}
                     />
-                  )}
-
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+          ))}
 
-            <div className="flex items-center justify-between">
-              <Button
-                size="lg"
-                variant={"outline"}
-                onClick={onHandlePrevStep}
-                className="rounded-full"
-              >
-                <ChevronLeft /> Back
-              </Button>
-              <Button
-                size="lg"
-                disabled={form.formState.isSubmitting}
-                type="submit"
-                className="rounded-full"
-              >
-                {form.formState.isSubmitting ? "Signing up..." : "SignUp"}
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </CardContent>
-    </>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <Input
+                      type={isPasswordHidden ? "password" : "text"}
+                      placeholder="Enter your password"
+                      {...field}
+                    />
+                    <span
+                      className="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer text-sm"
+                      onClick={() => setIsPasswordHidden((cur) => !cur)}
+                    >
+                      {isPasswordHidden ? <Eye /> : <EyeOff />}
+                    </span>
+                  </div>
+                </FormControl>
+
+                {/* Password Checks */}
+                {passwordValue && (
+                  <PasswordChecks
+                    password={passwordValue}
+                    checks={validatePassword}
+                  />
+                )}
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <div className="flex items-center justify-between">
+            <Button
+              size="lg"
+              variant={"outline"}
+              onClick={onHandlePrevStep}
+              className="rounded-full"
+            >
+              <ChevronLeft /> Back
+            </Button>
+            <Button
+              size="lg"
+              disabled={isSubmitting}
+              type="submit"
+              className="rounded-full"
+            >
+              {isSubmitting ? "Signing up..." : "Signup"}
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </CardContent>
   );
 }
 

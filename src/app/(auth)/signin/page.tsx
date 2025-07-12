@@ -1,17 +1,29 @@
-import DotPattern from "@/components/ui/dot-pattern";
-import ReturnButton from "@/components/ui/return-button";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import SignInForm from "./_components/signin-form";
 
 function Signin() {
   return (
-    <section className="relative flex h-screen items-center justify-center p-4">
-      <ReturnButton />
-      <DotPattern />
-
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
-
+    <Card
+      className={cn(
+        "w-full bg-transparent backdrop-blur-2xl sm:w-auto sm:min-w-[25rem]",
+      )}
+    >
+      <CardHeader>
+        <CardTitle className="text-2xl font-bold md:text-3xl">
+          Sign In
+        </CardTitle>
+        <CardDescription className="font-base">
+          Welcome back! Let's finish where we left off
+        </CardDescription>
+      </CardHeader>
       <SignInForm />
-    </section>
+    </Card>
   );
 }
 
