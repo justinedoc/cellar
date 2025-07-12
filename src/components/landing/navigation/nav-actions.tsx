@@ -4,6 +4,7 @@ import Box from "@/components/ui/box";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ArrowRight, LucideProps, XIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import MobileMenu from "./mobile-menu";
 
@@ -14,13 +15,18 @@ function NavActions() {
   return (
     <>
       <Box>
-        <Button size="sm" variant={isMobile ? "secondary" : "outline"}>
-          Sign in
-        </Button>
-        <Button size="sm" className="group hidden md:flex">
-          Sign up
-          <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
-        </Button>
+        <Link href={"/signin"}>
+          <Button size="sm" variant={isMobile ? "secondary" : "outline"}>
+            Sign in
+          </Button>
+        </Link>
+
+        <Link href="/signup">
+          <Button size="sm" className="group hidden md:flex">
+            Sign up
+            <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
+          </Button>
+        </Link>
 
         <Button
           size="icon"

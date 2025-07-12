@@ -100,6 +100,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
               >
                 {resourcesNavItems.map((item) => (
                   <Link
+                    key={item.title}
                     href={item.to}
                     className="hover:bg-muted flex w-full items-center gap-2 rounded-md px-4 py-2 text-lg"
                   >
@@ -123,6 +124,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
               >
                 {resourcesNavItems.map((item) => (
                   <Link
+                    key={item.title}
                     href={item.to}
                     className="hover:bg-muted flex w-full items-center gap-2 rounded-md px-4 py-2 text-lg"
                   >

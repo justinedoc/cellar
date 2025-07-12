@@ -56,13 +56,14 @@ function Hero() {
         />
       </Banner>
 
-      <div className="relative mx-auto mt-4 md:max-w-[60rem] md:mt-8">
+      <div className="relative mx-auto mt-4 md:mt-8 md:max-w-[60rem]">
         <Image
-          src={"/images/dashboard-img.png"}
+          src={"/images/dashboard-img_2.png"}
           alt="Dashboard Image of cellar"
           width={1000}
           height={1000}
           priority
+          className="rounded-lg border shadow-xl"
         />
 
         <StatsBanner />
