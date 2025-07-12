@@ -58,7 +58,7 @@ function SignInForm({ ...props }: ComponentProps<typeof Card>) {
     <Card
       {...props}
       className={cn(
-        "bg-transparent backdrop-blur-2xl w-full sm:w-auto sm:min-w-[25rem]",
+        "w-full bg-transparent backdrop-blur-2xl sm:w-auto sm:min-w-[25rem]",
         props.className,
       )}
     >
@@ -67,7 +67,7 @@ function SignInForm({ ...props }: ComponentProps<typeof Card>) {
           Sign In
         </CardTitle>
         <CardDescription className="font-base">
-          Heyy! Welcome Back
+          Welcome back! Let's finish where we left off
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -163,7 +163,7 @@ function SignInForm({ ...props }: ComponentProps<typeof Card>) {
 
             <p className="text-muted-foreground text-center text-sm">
               Don't have an account?{" "}
-              <Link href="signup">
+              <Link href="/signup">
                 <Button variant={"link"} className="text-foreground px-1">
                   Create one
                 </Button>
