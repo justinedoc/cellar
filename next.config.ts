@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
         rule &&
         typeof rule === "object" &&
         rule.test instanceof RegExp &&
-        rule.test.test(".svg")
+        rule.test.test(".svg"),
     );
 
     if (fileLoaderRule) {
@@ -31,6 +31,8 @@ const nextConfig: NextConfig = {
       },
     },
   },
+
+  allowedDevOrigins: ["192.168.1.129"],
 };
 
 export default nextConfig;

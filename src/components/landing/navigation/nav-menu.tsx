@@ -12,7 +12,7 @@ import { HelpCircle, Newspaper } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ComponentType } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 type TItem = {
   title: string;
@@ -85,7 +85,7 @@ export default function NavMenu() {
           <NavigationMenuContent>
             <div className="grid w-[20rem] grid-cols-2 gap-4 md:w-[30rem]">
               {resourcesNavItems.map((item) => (
-                <Item {...item} />
+                <Item key={item.title} {...item} />
               ))}
             </div>
           </NavigationMenuContent>

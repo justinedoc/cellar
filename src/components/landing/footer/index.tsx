@@ -1,26 +1,24 @@
-import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import Logo from "../globals/logo";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Separator } from "../ui/separator";
+import Logo from "../../globals/logo";
+import { Separator } from "../../ui/separator";
+import SubscribeForm from "./subscribe-form";
+
+const footerLinks = [
+  {
+    text: "Feed",
+    link: "/feed",
+  },
+  {
+    text: "CoolExpx",
+    link: "/coolexpx",
+  },
+  {
+    text: "Support",
+    link: "/support",
+  },
+];
 
 function Footer() {
-  const footerLinks = [
-    {
-      text: "Feed",
-      link: "/feed",
-    },
-    {
-      text: "CoolExpx",
-      link: "/coolexpx",
-    },
-    {
-      text: "Support",
-      link: "/support",
-    },
-  ];
-
   return (
     <footer className="text-muted-foreground mt-auto border-t px-4 py-4 md:px-25">
       <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-3 md:gap-0 md:py-4">
@@ -44,17 +42,7 @@ function Footer() {
             <span className="text-muted-foreground">Updated!</span>
           </h2>
 
-          <form className="border-muted flex items-center gap-2 rounded-md border p-2 py-1.5">
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              className="border-0 focus-visible:ring-0"
-            />
-
-            <Button size="icon" className="p-2">
-              <ChevronRight />
-            </Button>
-          </form>
+          <SubscribeForm />
         </div>
       </div>
 

@@ -1,10 +1,10 @@
 "use client";
 
+import Box from "@/components/ui/box";
+import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ArrowRight, LucideProps, XIcon } from "lucide-react";
 import { useState } from "react";
-import Box from "../ui/box";
-import { Button } from "../ui/button";
 import MobileMenu from "./mobile-menu";
 
 function NavActions() {

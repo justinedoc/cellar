@@ -1,4 +1,4 @@
-import Logo from "../globals/logo";
+import Logo from "@/components/globals/logo";
 import NavActions from "./nav-actions";
 import NavMenu from "./nav-menu";
 

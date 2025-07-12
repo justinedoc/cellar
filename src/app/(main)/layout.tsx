@@ -1,9 +1,9 @@
 import Footer from "@/components/landing/footer";
-import Navbar from "@/components/landing/navbar";
+import Navbar from "@/components/landing/navigation";
 
 function LandingPageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="overflow-x-hidden grid">
+    <div className="grid overflow-x-hidden">
       <Navbar />
       {children}
       <Footer />
