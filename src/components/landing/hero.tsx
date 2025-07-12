@@ -32,8 +32,8 @@ function Hero() {
             Get Access to Powerful Books and Real-Time Memos
           </Banner.Title>
           <Banner.Description>
-            A complete library of professional training books and daily memos
-            designed to keep you informed, skilled, and ahead in your field.
+            Build teams that think together, move faster, and stay in sync. Your
+            organization deserves more than scattered docs and lost data
           </Banner.Description>
           <Banner.CTA>
             <Link href="#">

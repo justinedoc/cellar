@@ -6,9 +6,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Flame, Home, Layers3, LayoutDashboard } from "lucide-react";
+import {
+  ArrowRight,
+  Flame,
+  Home,
+  Layers3,
+  LayoutDashboard,
+} from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import { resourcesNavItems } from "./nav-menu";
@@ -86,7 +93,6 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
               <Flame className="h-5 w-5" /> What's Cooking?
             </Link>
           </li>
-
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="features" className="border-none">
               <AccordionTrigger className="hover:text-muted-foreground px-4 py-2 text-lg font-medium">
@@ -110,7 +116,6 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="resources" className="border-none">
               <AccordionTrigger className="hover:text-muted-foreground px-4 py-2 text-lg font-medium">
@@ -134,6 +139,12 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+          <Link href="/signup" className="flex w-full">
+            <Button size="lg" className="group mx-auto rounded-full">
+              Sign up
+              <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
+            </Button>
+          </Link>
         </ul>
       </motion.div>
     </div>
