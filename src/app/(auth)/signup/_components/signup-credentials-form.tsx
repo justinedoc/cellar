@@ -18,7 +18,7 @@ import { useFormContext } from "react-hook-form";
 import {
   SignUpCredentialsFields,
   TSignUpCredentialsSchema,
-} from "./forms-wrapper";
+} from "./signup-forms-wrapper";
 
 function validatePassword(password: string) {
   return [

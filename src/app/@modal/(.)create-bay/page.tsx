@@ -1,6 +1,6 @@
 "use client";
 
-import SignInForm from "@/app/(auth)/signin/_components/signin-form";
+import CreateBayForm from "@/app/(auth)/create-bay/_components/create-bay-form";
 import {
   Dialog,
   DialogContent,
@@ -10,23 +10,23 @@ import {
 } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
 
-function signInModal() {
+function CreateBayModal() {
   const router = useRouter();
   return (
     <Dialog defaultOpen onOpenChange={() => router.back()}>
       <DialogContent className="px-0 sm:max-w-[25rem]">
         <DialogHeader className="px-6">
           <DialogTitle className="text-left text-2xl font-bold md:text-3xl">
-            Sign In
+            Create a Bay
           </DialogTitle>
           <DialogDescription>
-            Welcome back! Let's finish where we left off
+            Create a Bay and keep your team together{" "}
           </DialogDescription>
         </DialogHeader>
-        <SignInForm />
+        <CreateBayForm />
       </DialogContent>
     </Dialog>
   );
 }
 
-export default signInModal;
+export default CreateBayModal;

@@ -6,7 +6,6 @@ import { Button } from "../ui/button";
 import GridPattern from "../ui/grid-pattern";
 import { Spotlight } from "../ui/spotlight";
 import Tag from "../ui/tag";
-import StatsBanner from "./stats-banner";
 
 function Hero() {
   return (
@@ -23,24 +22,25 @@ function Hero() {
           <Link href={"#"}>
             <Tag>
               <TextShimmer className="font-mono text-sm" duration={2}>
-                Filling your bookshelf...
+                Organizing the chaos...
               </TextShimmer>
             </Tag>
           </Link>
 
           <Banner.Title>
-            Get Access to Powerful Books and Real-Time Memos
+            Stay Aligned <br />
+            Stay Connected.
           </Banner.Title>
           <Banner.Description>
-            Build teams that think together, move faster, and stay in sync. Your
-            organization deserves more than scattered docs and lost data
+            Unify your organization's knowledge and execution in one
+            intelligent, real-time workspace.
           </Banner.Description>
           <Banner.CTA>
-            <Link href="#">
+            <Link href="/signup">
               <Button size="lg">Get Started</Button>
             </Link>
 
-            <Link href="#">
+            <Link href="create-bay">
               <Button variant="outline" size="lg">
                 Create A Bay
               </Button>
@@ -66,7 +66,7 @@ function Hero() {
           className="rounded-lg border shadow-xl"
         />
 
-        <StatsBanner />
+        {/* <StatsBanner /> */}
       </div>
     </div>
   );

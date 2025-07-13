@@ -1,13 +1,14 @@
 import { Card } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
-import FormsWrapper from "./_components/forms-wrapper";
+import SignUpFormsWrapper from "./_components/signup-forms-wrapper";
+
+export const metadata = {
+  title: "Cellar - Create Your Account",
+};
 
 function Signup() {
   return (
-    <Card
-      className={cn("w-full bg-transparent backdrop-blur-2xl sm:w-[28rem]")}
-    >
-      <FormsWrapper />
+    <Card className="w-full bg-transparent backdrop-blur-2xl sm:w-[28rem]">
+      <SignUpFormsWrapper />
     </Card>
   );
 }

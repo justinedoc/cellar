@@ -3,9 +3,11 @@ import { base, heading } from "@/constants/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import "./globals.css";
+
 export const metadata: Metadata = {
   title: "Cellar",
-  description: "Collaboration Hub",
+  description:
+    "Unify your organization's knowledge and execution in one intelligent, real-time workspace.",
 };
 
 export default function RootLayout({

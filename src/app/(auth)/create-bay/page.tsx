@@ -5,13 +5,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import SignInForm from "./_components/signin-form";
+import SignInForm from "./_components/create-bay-form";
 
 export const metadata = {
   title: "Cellar - Signin To Your Account",
 };
 
-function Signin() {
+function CreateBay() {
   return (
     <Card
       className={cn(
@@ -20,10 +20,10 @@ function Signin() {
     >
       <CardHeader>
         <CardTitle className="text-2xl font-bold md:text-3xl">
-          Sign In
+          Create a Bay
         </CardTitle>
         <CardDescription className="font-base">
-          Welcome back! Let's finish where we left off
+          Create a Bay and keep your team together
         </CardDescription>
       </CardHeader>
       <SignInForm />
@@ -31,4 +31,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default CreateBay;

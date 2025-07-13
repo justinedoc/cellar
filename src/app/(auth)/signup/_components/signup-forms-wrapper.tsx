@@ -10,7 +10,9 @@ import {
 import { Stepper } from "@/components/ui/stepper";
 import { sleep } from "@/lib/sleep";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CircleUserRound, IdCard } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -30,6 +32,16 @@ const SignupDetailsSchema = z.object({
     .string({ message: "Bay User Tag is required" })
     .min(1, "Bay user Tag is required"),
 });
+
+const SignUpCredentialsSchema = z.object({
+  businessMobile: z
+    .string()
+    .min(10, "Business Mobile must be at least 10 characters long"),
+  proPositions: z.string({ message: "Professional Position is required" }),
+  password: z.string().min(6, "Password must be at least 6 characters long"),
+});
+
+const SignupSchema = SignupDetailsSchema.merge(SignUpCredentialsSchema);
 
 export const SignupDetailsFields = [
   {
@@ -80,24 +92,14 @@ export const SignUpCredentialsFields = [
   },
 ];
 
-const SignUpCredentialsSchema = z.object({
-  businessMobile: z
-    .string()
-    .min(10, "Business Mobile must be at least 10 characters long"),
-  proPositions: z.string({ message: "Professional Position is required" }),
-  password: z.string().min(6, "Password must be at least 6 characters long"),
-});
-
-const SignupSchema = SignupDetailsSchema.merge(SignUpCredentialsSchema);
 export type TSignupUser = z.infer<typeof SignupSchema>;
 export type TSignupDetailsSchema = z.infer<typeof SignupDetailsSchema>;
 export type TSignUpCredentialsSchema = z.infer<typeof SignUpCredentialsSchema>;
 
-function FormsWrapper() {
+function SignUpFormsWrapper() {
+  const router = useRouter();
   const [formStep, setFormStep] = useState(1);
-
   const [isPending, startTransition] = useTransition();
-
   const [signupDetailsData, setSignupDetailsData] =
     useState<TSignupDetailsSchema>({
       email: "",
@@ -106,6 +108,9 @@ function FormsWrapper() {
       bayUserTag: "",
     });
 
+  const stepIcons = [<CircleUserRound />, <IdCard />];
+
+  // form methods
   const SignupDetailsMethods = useForm<TSignupDetailsSchema>({
     resolver: zodResolver(SignupDetailsSchema),
     defaultValues: {
@@ -125,6 +130,7 @@ function FormsWrapper() {
     },
   });
 
+  // handlers
   const onSubmitSignupDetailsForm = (data: TSignupDetailsSchema) => {
     setSignupDetailsData(data);
     setFormStep((cur) => cur + 1);
@@ -142,9 +148,13 @@ function FormsWrapper() {
         await sleep(3000);
         toast.success("Account Created Successfully!");
         console.log("data:", finalData);
+
+        router.push("/");
       } catch (error) {
         console.error("Error during submission:", error);
-        toast.error((error as Error).message || "An unexpected error occured");
+        toast.error(
+          String((error as Error).message) || "An unexpected error occured",
+        );
       }
     });
   };
@@ -152,7 +162,7 @@ function FormsWrapper() {
   return (
     <>
       <Stepper
-        stepsNum={2}
+        stepIcons={stepIcons}
         currentStep={formStep}
         className="mx-auto w-[85%] border-b px-8 pb-4 md:px-16"
       />
@@ -162,7 +172,7 @@ function FormsWrapper() {
           Sign Up
         </CardTitle>
         <CardDescription className="font-base">
-          Create account and Deploy in seconds
+          Create an account and think as one
         </CardDescription>
       </CardHeader>
 
@@ -183,9 +193,9 @@ function FormsWrapper() {
 
       <CardFooter className="mx-auto">
         <p className="text-muted-foreground text-center text-sm">
-          Registered?{" "}
+          Registered?
           <Link href="/signin">
-            <Button variant={"link"} className="text-foreground px-0">
+            <Button variant={"link"} className="text-foreground px-1">
               SignIn
             </Button>
           </Link>
@@ -195,4 +205,4 @@ function FormsWrapper() {
   );
 }
 
-export default FormsWrapper;
+export default SignUpFormsWrapper;

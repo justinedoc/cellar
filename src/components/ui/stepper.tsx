@@ -1,17 +1,17 @@
 import { cn } from "@/lib/utils"; // Assuming you're using shadcn/ui
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+import React, { ReactElement } from "react";
 
 export type StepperProps = {
-  stepsNum: number;
+  stepIcons: ReactElement[];
   currentStep: number;
   className?: string;
 };
 
-export function Stepper({ stepsNum, currentStep, className }: StepperProps) {
+export function Stepper({ stepIcons, currentStep, className }: StepperProps) {
   return (
     <div className={cn("flex w-full items-center", className)}>
-      {Array.from({ length: stepsNum }, (_, index) => {
+      {stepIcons.map((Icon, index) => {
         const stepIndex = index + 1;
         const isCompleted = stepIndex < currentStep;
         const isActive = stepIndex === currentStep;
@@ -34,19 +34,19 @@ export function Stepper({ stepsNum, currentStep, className }: StepperProps) {
               >
                 {/* Icon is now properly centered and colored */}
                 <div
-                  className={cn("text-2xl font-bold font-base", {
+                  className={cn("font-base text-2xl font-bold", {
                     "text-primary-foreground": isCompleted,
                     "text-primary": isActive,
                     "text-muted-foreground": !isCompleted && !isActive,
                   })}
                 >
-                  {index + 1}
+                  {Icon}
                 </div>
               </motion.div>
             </div>
 
             {/* Connector Line */}
-            {index < stepsNum - 1 && (
+            {index < stepIcons.length - 1 && (
               <div className="relative flex-1">
                 <div className="bg-muted absolute top-1/2 h-0.5 w-full -translate-y-1/2" />
                 <AnimatePresence>

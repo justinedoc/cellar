@@ -12,7 +12,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useFormContext } from "react-hook-form";
-import { SignupDetailsFields, TSignupDetailsSchema } from "./forms-wrapper";
+import {
+  SignupDetailsFields,
+  TSignupDetailsSchema,
+} from "./signup-forms-wrapper";
 
 function SignUpDetailsForm({
   onSubmit,
