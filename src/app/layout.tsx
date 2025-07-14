@@ -27,7 +27,7 @@ export default function RootLayout({
         )}
       >
         {children}
-        <Toaster richColors />
+        <Toaster richColors theme="dark" position="top-right" />
         {modal}
       </body>
     </html>

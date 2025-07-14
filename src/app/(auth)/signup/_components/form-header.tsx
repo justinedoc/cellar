@@ -16,8 +16,8 @@ function FormHeader({ mode }: FormHeaderProps) {
   const Description = mode === "card" ? CardDescription : DialogDescription;
 
   return (
-    <Wrapper className={cn({ "px-6": mode === "dialog" })}>
-      <Title className={"text-2xl font-bold md:text-3xl"}>Sign Up</Title>
+    <Wrapper className={cn({ "px-6 text-left": mode === "dialog" })}>
+      <Title className={"font-bold text-3xl"}>Sign Up</Title>
       <Description className="font-base">
         Create an account and think as one
       </Description>

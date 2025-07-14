@@ -33,7 +33,7 @@ Banner.Title = function ({ ...props }: ComponentProps<"h1">) {
     <h1
       {...props}
       className={cn(
-        "bg-opacity-50 font-base bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl",
+        "bg-opacity-50 font-base bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-4xl font-extrabold text-transparent md:text-7xl",
         props.className,
       )}
     />
@@ -59,7 +59,7 @@ Banner.CTA = function ({ ...props }: ComponentProps<typeof Box>) {
 };
 
 Banner.OverlayImg = function ({ ...props }: ComponentProps<typeof Image>) {
-  return <Image {...props} alt="Banner image" className={cn("absolute -z-10", props.className)} />;
+  return <Image {...props} alt="Overlay image" className={cn("absolute -z-10", props.className)} />;
 };
 
 export default Banner;

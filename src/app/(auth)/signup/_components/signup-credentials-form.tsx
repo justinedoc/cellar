@@ -41,7 +41,7 @@ function SignUpCredentialsForm({
   isSubmitting: boolean;
 }) {
   const form = useFormContext<TSignUpCredentialsSchema>();
-  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(false);
 
   const passwordValue = form.watch("password");
   return (
@@ -106,6 +106,7 @@ function SignUpCredentialsForm({
 
           <div className="flex items-center justify-between">
             <Button
+              type="button"
               size="lg"
               variant={"outline"}
               onClick={onHandlePrevStep}

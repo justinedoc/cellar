@@ -22,9 +22,10 @@ import {
   SignInFormSchema,
   SignInForm as TSignInForm,
 } from "@/lib/schemas/auth/signin";
+
+import { Checkbox } from "@/components/ui/checkbox";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Checkbox } from "@radix-ui/react-checkbox";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { ArrowUpRight, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -113,12 +114,15 @@ function FormDetails({
               </FormControl>
               <FormDescription className="font-base">
                 Don't have one?
-                <Link href="/create-bay">
+                <Link href="/create-bay" passHref>
                   <Button
+                    asChild
                     variant="link"
                     className="text-foreground/90 gap-0.5 has-[>svg]:px-1"
                   >
-                    create a bay <ArrowUpRight />
+                    <span>
+                      create a bay <ArrowUpRight />
+                    </span>
                   </Button>
                 </Link>
               </FormDescription>
@@ -155,8 +159,13 @@ function FormDetails({
         />
 
         <div className="-mt-4 flex items-center justify-between text-sm">
-          <Link href={"/forgot-password"}>
-            <Button size="sm" variant="link" className="text-muted-foreground">
+          <Link passHref href={"/forgot-password"}>
+            <Button
+              asChild
+              size="sm"
+              variant="link"
+              className="text-muted-foreground"
+            >
               Forgot password?
             </Button>
           </Link>
@@ -188,8 +197,8 @@ function FormDetails({
 
         <p className="text-muted-foreground text-center text-sm">
           Don't have an account?{" "}
-          <Link href="/signup">
-            <Button variant={"link"} className="text-foreground px-1">
+          <Link passHref href="/signup">
+            <Button asChild variant={"link"} className="text-foreground px-1">
               Create one
             </Button>
           </Link>

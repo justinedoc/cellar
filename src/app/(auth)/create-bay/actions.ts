@@ -11,7 +11,7 @@ export async function createBay(
 ): Promise<ServerActionResponse | ErrorResponse> {
   try {
     const validDetails = CreateBaySchema.parse(details);
-    await sleep(3000);
+    await sleep();
 
     console.log("valid details: ", validDetails);
 

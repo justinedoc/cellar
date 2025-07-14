@@ -2,26 +2,24 @@
 
 import Box from "@/components/ui/box";
 import { Button } from "@/components/ui/button";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { ArrowRight, LucideProps, XIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import MobileMenu from "./mobile-menu";
 
 function NavActions() {
-  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Box>
-        <Link href={"/signin"}>
-          <Button size="sm" variant={isMobile ? "secondary" : "outline"}>
+      <Box className="gap-2 md:gap-4">
+        <Link passHref href={"/signin"}>
+          <Button size="sm" variant={"outline"}>
             Sign in
           </Button>
         </Link>
 
-        <Link href="/signup">
+        <Link passHref href="/signup">
           <Button size="sm" className="group hidden md:flex">
             Sign up
             <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
@@ -32,12 +30,12 @@ function NavActions() {
           size="icon"
           variant="ghost"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="z-[100] h-8 w-8 p-2 md:hidden"
+          className="z-[100] size-8 p-2 md:hidden"
         >
           {isOpen ? (
-            <XIcon className="h-4 w-4 duration-300" />
+            <XIcon className="size-4 duration-300" />
           ) : (
-            <Menu className="h-3.5 w-3.5 duration-300" />
+            <Menu className="size-3.5 duration-300" />
           )}
         </Button>
       </Box>

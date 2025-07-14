@@ -50,8 +50,10 @@ function Hero() {
 
         <Banner.OverlayImg
           src={"/images/hero-overlay.png"}
-          alt="hero"
-          loading="eager"
+          alt="Hero overlay"
+          priority
+          width={1000}
+          height={1000}
           className="top-50 left-1/2 w-[120%] -translate-x-1/2 md:top-40 md:w-[70%]"
         />
       </Banner>

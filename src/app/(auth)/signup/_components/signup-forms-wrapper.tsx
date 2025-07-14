@@ -10,6 +10,7 @@ import {
 } from "@/lib/schemas/auth/signup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleUserRound, IdCard } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -71,6 +72,9 @@ export const SignUpCredentialsFields = [
 function SignUpFormsWrapper({ as }: { as: "card" | "dialog" }) {
   const [formStep, setFormStep] = useState(1);
   const [isPending, startTransition] = useTransition();
+
+  const router = useRouter();
+
   const [signupDetailsData, setSignupDetailsData] =
     useState<TSignupDetailsSchema>({
       email: "",
@@ -78,8 +82,6 @@ function SignUpFormsWrapper({ as }: { as: "card" | "dialog" }) {
       bayID: "",
       bayUserTag: "",
     });
-
-  const stepIcons = [<CircleUserRound key={1} />, <IdCard key={2} />];
 
   // form methods
   const SignupDetailsMethods = useForm<TSignupDetailsSchema>({
@@ -103,6 +105,8 @@ function SignUpFormsWrapper({ as }: { as: "card" | "dialog" }) {
     },
   });
 
+  const stepIcons = [<CircleUserRound key={1} />, <IdCard key={2} />];
+
   // handlers
   const onSubmitSignupDetailsForm = (data: TSignupDetailsSchema) => {
     setSignupDetailsData(data);
@@ -125,6 +129,7 @@ function SignUpFormsWrapper({ as }: { as: "card" | "dialog" }) {
       }
 
       toast.success(message);
+      router.push("/");
     });
   };
 

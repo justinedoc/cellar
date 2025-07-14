@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { CreateBay, CreateBaySchema } from "@/lib/schemas/bay/create-bay";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -21,6 +22,9 @@ import { createBay } from "../actions";
 
 function CreateBayForm() {
   const [isPending, startTransition] = useTransition();
+
+  const router = useRouter();
+
   const form = useForm<CreateBay>({
     resolver: zodResolver(CreateBaySchema),
     defaultValues: {
@@ -39,6 +43,8 @@ function CreateBayForm() {
       }
 
       toast.success(message);
+
+      router.push("/signup");
     });
   }
 
