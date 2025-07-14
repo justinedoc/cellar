@@ -11,31 +11,35 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { CreateBay, CreateBaySchema } from "@/lib/schemas/bay/create-bay";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const CreateBay = z.object({
-  email: z.string().email(),
-  companyName: z.string().min(1, {
-    message: "Company name is required",
-  }),
-});
-
-type TCreateBay = z.infer<typeof CreateBay>;
+import { toast } from "sonner";
+import { createBay } from "../actions";
 
 function CreateBayForm() {
-  const form = useForm<TCreateBay>({
-    resolver: zodResolver(CreateBay),
+  const [isPending, startTransition] = useTransition();
+  const form = useForm<CreateBay>({
+    resolver: zodResolver(CreateBaySchema),
     defaultValues: {
       email: "",
       companyName: "",
     },
   });
 
-  function onSubmit(values: TCreateBay) {
-    console.log(values);
+  function onSubmit(values: CreateBay) {
+    startTransition(async () => {
+      const { message, success } = await createBay(values);
+
+      if (!success) {
+        toast.error(message);
+        return;
+      }
+
+      toast.success(message);
+    });
   }
 
   return (
@@ -76,9 +80,9 @@ function CreateBayForm() {
           type="submit"
           size="lg"
           className="rounded-full"
-          disabled={form.formState.isSubmitting}
+          disabled={isPending}
         >
-          Create
+          {isPending ? "Creating..." : "Create"}
         </Button>
 
         <p className="text-muted-foreground text-center text-sm">
