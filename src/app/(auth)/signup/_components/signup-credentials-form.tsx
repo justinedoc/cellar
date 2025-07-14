@@ -11,14 +11,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { TSignUpCredentialsSchema } from "@/lib/schemas/auth/signup";
 import { cn } from "@/lib/utils";
 import { Check, ChevronLeft, Eye, EyeOff, X } from "lucide-react";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import {
-  SignUpCredentialsFields,
-  TSignUpCredentialsSchema,
-} from "./signup-forms-wrapper";
+import { SignUpCredentialsFields } from "./signup-forms-wrapper";
 
 function validatePassword(password: string) {
   return [

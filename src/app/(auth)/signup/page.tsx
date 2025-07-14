@@ -8,7 +8,7 @@ export const metadata = {
 function Signup() {
   return (
     <Card className="w-full bg-transparent backdrop-blur-2xl sm:w-[28rem]">
-      <SignUpFormsWrapper />
+      <SignUpFormsWrapper as="card" />
     </Card>
   );
 }

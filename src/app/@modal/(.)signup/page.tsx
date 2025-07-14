@@ -10,7 +10,7 @@ function SignUpModal() {
   return (
     <Dialog defaultOpen onOpenChange={() => router.back()}>
       <DialogContent className="px-0 sm:w-[28rem]">
-        <SignUpFormsWrapper />
+        <SignUpFormsWrapper as="dialog" />
       </DialogContent>
     </Dialog>
   );

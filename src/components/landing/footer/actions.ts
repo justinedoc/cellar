@@ -1,7 +1,9 @@
 "use server";
 
-import { handleZodError } from "@/lib/handle-zod-error";
-import { z, ZodError } from "zod/v4";
+import { handleServerActionError } from "@/lib/handle-server-error";
+import { ErrorResponse } from "@/types/error-types";
+import { ServerActionResponse } from "@/types/server-action-types";
+import { z } from "zod/v4";
 
 const SubscribeSchema = z.object({
   email: z.email("Please provide a valid email address"),
@@ -9,7 +11,7 @@ const SubscribeSchema = z.object({
 
 export async function subscribeToNewsLetter(
   formData: FormData,
-): Promise<{ message: string; success: boolean }> {
+): Promise<ServerActionResponse | ErrorResponse> {
   try {
     const data = Object.fromEntries(formData.entries());
 
@@ -19,22 +21,6 @@ export async function subscribeToNewsLetter(
 
     return { success: true, message: "You're subscribed!" };
   } catch (err) {
-    if (err instanceof ZodError) {
-      const { error, message } = handleZodError(err);
-
-      console.error("Validation error: ", error);
-
-      return {
-        success: false,
-        message,
-      };
-    }
-
-    console.error("Error in subscribeToNewsLetter", err);
-
-    return {
-      success: false,
-      message: "Something went wrong, Please try again later",
-    };
+    return handleServerActionError(err);
   }
 }

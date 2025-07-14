@@ -11,11 +11,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { TSignupDetailsSchema } from "@/lib/schemas/auth/signup";
 import { useFormContext } from "react-hook-form";
-import {
-  SignupDetailsFields,
-  TSignupDetailsSchema,
-} from "./signup-forms-wrapper";
+import { SignupDetailsFields } from "./signup-forms-wrapper";
 
 function SignUpDetailsForm({
   onSubmit,
@@ -48,7 +46,7 @@ function SignUpDetailsForm({
             />
           ))}
 
-          <div className="flex w-full flex-col gap-6 md:gap-4 md:flex-row">
+          <div className="flex w-full flex-col gap-6 md:flex-row md:gap-4">
             {SignupDetailsFields.slice(2).map((f) => (
               <FormField
                 key={f.name}

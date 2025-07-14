@@ -1,47 +1,23 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Stepper } from "@/components/ui/stepper";
-import { sleep } from "@/lib/sleep";
+import {
+  SignUpCredentialsSchema,
+  SignupDetailsSchema,
+  TSignUpCredentialsSchema,
+  TSignupDetailsSchema,
+  TSignupUser,
+} from "@/lib/schemas/auth/signup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleUserRound, IdCard } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import z from "zod";
+import { signupUser } from "../actions";
+import FormFooter from "./form-footer";
+import FormHeader from "./form-header";
 import SignUpCredentialsForm from "./signup-credentials-form";
 import SignUpDetailsForm from "./signup-details-form";
-
-const SignupDetailsSchema = z.object({
-  fullName: z
-    .string({ message: "Fullname is required" })
-    .min(1, "Fullname is required"),
-  email: z.string().email("Please enter a valid email address"),
-  bayID: z
-    .string({ message: "Bay ID is required" })
-    .min(1, "Bay ID is required"),
-  bayUserTag: z
-    .string({ message: "Bay User Tag is required" })
-    .min(1, "Bay user Tag is required"),
-});
-
-const SignUpCredentialsSchema = z.object({
-  businessMobile: z
-    .string()
-    .min(10, "Business Mobile must be at least 10 characters long"),
-  proPositions: z.string({ message: "Professional Position is required" }),
-  password: z.string().min(6, "Password must be at least 6 characters long"),
-});
-
-const SignupSchema = SignupDetailsSchema.merge(SignUpCredentialsSchema);
 
 export const SignupDetailsFields = [
   {
@@ -92,12 +68,7 @@ export const SignUpCredentialsFields = [
   },
 ];
 
-export type TSignupUser = z.infer<typeof SignupSchema>;
-export type TSignupDetailsSchema = z.infer<typeof SignupDetailsSchema>;
-export type TSignUpCredentialsSchema = z.infer<typeof SignUpCredentialsSchema>;
-
-function SignUpFormsWrapper() {
-  const router = useRouter();
+function SignUpFormsWrapper({ as }: { as: "card" | "dialog" }) {
   const [formStep, setFormStep] = useState(1);
   const [isPending, startTransition] = useTransition();
   const [signupDetailsData, setSignupDetailsData] =
@@ -143,21 +114,17 @@ function SignUpFormsWrapper() {
   };
 
   const onSubmitSignUpCredentialsForm = (data: TSignUpCredentialsSchema) => {
-    const finalData: TSignupUser = { ...signupDetailsData, ...data };
+    const userData: TSignupUser = { ...signupDetailsData, ...data };
 
     startTransition(async () => {
-      try {
-        await sleep(3000);
-        toast.success("Account Created Successfully!");
-        console.log("data:", finalData);
+      const { message, success } = await signupUser(userData);
 
-        router.push("/");
-      } catch (error) {
-        console.error("Error during submission:", error);
-        toast.error(
-          String((error as Error).message) || "An unexpected error occured",
-        );
+      if (!success) {
+        toast.error(message);
+        return;
       }
+
+      toast.success(message);
     });
   };
 
@@ -169,14 +136,9 @@ function SignUpFormsWrapper() {
         className="mx-auto w-[85%] border-b px-8 pb-4 md:px-16"
       />
 
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold md:text-3xl">
-          Sign Up
-        </CardTitle>
-        <CardDescription className="font-base">
-          Create an account and think as one
-        </CardDescription>
-      </CardHeader>
+      {/* Form header */}
+
+      <FormHeader mode={as} />
 
       {formStep === 1 && (
         <FormProvider {...SignupDetailsMethods}>
@@ -193,16 +155,7 @@ function SignUpFormsWrapper() {
         </FormProvider>
       )}
 
-      <CardFooter className="mx-auto">
-        <p className="text-muted-foreground text-center text-sm">
-          Registered?
-          <Link href="/signin">
-            <Button variant={"link"} className="text-foreground px-1">
-              SignIn
-            </Button>
-          </Link>
-        </p>
-      </CardFooter>
+      <FormFooter mode={as} />
     </>
   );
 }
