@@ -11,7 +11,7 @@ export const SignUpCredentialsSchema = z.object({
   businessMobile: z
     .string()
     .min(10, "Business Mobile must be at least 10 characters long"),
-  proPositions: z.string().min(1),
+  proPositions: z.string().min(1, { message: "Professional Position is required" }),
   password: z.string().min(6, "Password must be at least 6 characters long"),
 });
 

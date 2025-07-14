@@ -59,7 +59,7 @@ Banner.CTA = function ({ ...props }: ComponentProps<typeof Box>) {
 };
 
 Banner.OverlayImg = function ({ ...props }: ComponentProps<typeof Image>) {
-  return <Image {...props} className={cn("absolute -z-10", props.className)} />;
+  return <Image {...props} alt="Banner image" className={cn("absolute -z-10", props.className)} />;
 };
 
 export default Banner;

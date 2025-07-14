@@ -79,7 +79,7 @@ function SignUpFormsWrapper({ as }: { as: "card" | "dialog" }) {
       bayUserTag: "",
     });
 
-  const stepIcons = [<CircleUserRound />, <IdCard />];
+  const stepIcons = [<CircleUserRound key={1} />, <IdCard key={2} />];
 
   // form methods
   const SignupDetailsMethods = useForm<TSignupDetailsSchema>({

@@ -16,7 +16,7 @@ const eslintConfig = [
     rules: {
       "react/jsx-key": "warn",
       "react/display-name": "off",
-      " react/no-unescaped-entities": "off",
+      "react/no-unescaped-entities": "off",
       "@typescript-eslint/explicit-module-boundary-types": "off",
     },
   },
