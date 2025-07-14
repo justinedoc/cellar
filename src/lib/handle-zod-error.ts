@@ -1,5 +1,4 @@
-import { ZodError } from "zod";
-import { z } from "zod/v4";
+import { z, ZodError } from "zod/v4";
 
 export function handleZodError(err: ZodError) {
   const message = z.prettifyError(err);

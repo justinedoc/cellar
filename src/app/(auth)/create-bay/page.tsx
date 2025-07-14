@@ -1,5 +1,6 @@
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -26,7 +27,10 @@ function CreateBay() {
           Create a Bay and keep your team together
         </CardDescription>
       </CardHeader>
-      <CreateBayForm />
+
+      <CardContent>
+        <CreateBayForm />
+      </CardContent>
     </Card>
   );
 }

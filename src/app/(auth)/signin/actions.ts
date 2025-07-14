@@ -1,23 +1,23 @@
 "use server";
 
 import { handleZodError } from "@/lib/handle-zod-error";
-import { z, ZodError } from "zod/v4";
+import { type SignInForm, SignInFormSchema } from "@/lib/schemas/auth/signin";
+import { sleep } from "@/lib/sleep";
+import { ZodError } from "zod/v4";
 
-const SubscribeSchema = z.object({
-  email: z.email("Please provide a valid email address"),
-});
-
-export async function subscribeToNewsLetter(
-  formData: FormData,
+export async function signInUser(
+  user: SignInForm,
 ): Promise<{ message: string; success: boolean }> {
   try {
-    const data = Object.fromEntries(formData.entries());
+    const validUser = SignInFormSchema.parse(user);
+    await sleep(3000);
 
-    const { email } = SubscribeSchema.parse(data);
+    console.log("valid user: ", validUser);
 
-    console.log("✅ Email:", email);
-
-    return { success: true, message: "You're subscribed!" };
+    return {
+      success: true,
+      message: "Signin successful",
+    };
   } catch (err) {
     if (err instanceof ZodError) {
       const { error, message } = handleZodError(err);
@@ -30,7 +30,7 @@ export async function subscribeToNewsLetter(
       };
     }
 
-    console.error("Error in subscribeToNewsLetter", err);
+    console.error("Error in signin user", err);
 
     return {
       success: false,

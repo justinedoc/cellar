@@ -113,6 +113,7 @@ function SignUpFormsWrapper() {
   // form methods
   const SignupDetailsMethods = useForm<TSignupDetailsSchema>({
     resolver: zodResolver(SignupDetailsSchema),
+    mode: "onChange",
     defaultValues: {
       email: "",
       fullName: "",
@@ -123,6 +124,7 @@ function SignUpFormsWrapper() {
 
   const SignUpCredentialsMethods = useForm<TSignUpCredentialsSchema>({
     resolver: zodResolver(SignUpCredentialsSchema),
+    mode: "onChange",
     defaultValues: {
       businessMobile: "",
       proPositions: "Worker",

@@ -1,10 +1,10 @@
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import SignInForm from "./_components/signin-form";
 
 export const metadata = {
@@ -13,11 +13,7 @@ export const metadata = {
 
 function Signin() {
   return (
-    <Card
-      className={cn(
-        "w-full bg-transparent backdrop-blur-2xl sm:w-auto sm:min-w-[25rem]",
-      )}
-    >
+    <Card className="w-full bg-transparent backdrop-blur-2xl sm:w-auto sm:min-w-[25rem]">
       <CardHeader>
         <CardTitle className="text-2xl font-bold md:text-3xl">
           Sign In
@@ -26,7 +22,9 @@ function Signin() {
           Welcome back! Let's finish where we left off
         </CardDescription>
       </CardHeader>
-      <SignInForm />
+      <CardContent>
+        <SignInForm />
+      </CardContent>
     </Card>
   );
 }

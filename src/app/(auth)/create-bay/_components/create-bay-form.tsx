@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -40,64 +39,58 @@ function CreateBayForm() {
   }
 
   return (
-    <CardContent>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter your email"
-                    type="email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription className="font-base">
-                  Email of the IT support
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter your email" type="email" {...field} />
+              </FormControl>
+              <FormDescription className="font-base">
+                Email of the IT support
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="companyName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Company Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your company's name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <FormField
+          control={form.control}
+          name="companyName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Company Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter your company's name" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <Button
-            type="submit"
-            size="lg"
-            className="rounded-full"
-            disabled={form.formState.isSubmitting}
-          >
-            Create
-          </Button>
+        <Button
+          type="submit"
+          size="lg"
+          className="rounded-full"
+          disabled={form.formState.isSubmitting}
+        >
+          Create
+        </Button>
 
-          <p className="text-muted-foreground text-center text-sm">
-            Already have a Bay?{" "}
-            <Link href="/signin">
-              <Button variant={"link"} className="text-foreground px-1">
-                SignIn
-              </Button>
-            </Link>
-          </p>
-        </form>
-      </Form>
-    </CardContent>
+        <p className="text-muted-foreground text-center text-sm">
+          Already have a Bay?{" "}
+          <Link href="/signin">
+            <Button variant={"link"} className="text-foreground px-1">
+              SignIn
+            </Button>
+          </Link>
+        </p>
+      </form>
+    </Form>
   );
 }
 
