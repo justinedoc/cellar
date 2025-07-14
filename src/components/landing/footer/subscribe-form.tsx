@@ -15,14 +15,14 @@ function SubscribeForm() {
 
     startTransition(async () => {
       const formData = new FormData(e.currentTarget);
-      const { error, success } = await subscribeToNewsLetter(formData);
+      const { message, success } = await subscribeToNewsLetter(formData);
 
       if (!success) {
-        toast.error(error);
+        toast.error(message);
         return;
       }
 
-      toast.success("You're subscribed!");
+      toast.success(message);
     });
   }
 
