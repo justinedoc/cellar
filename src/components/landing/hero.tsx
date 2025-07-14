@@ -21,13 +21,13 @@ function Hero() {
         <Banner.Header>
           <Link href={"#"}>
             <Tag>
-              <TextShimmer className="font-mono text-sm" duration={2}>
+              <TextShimmer className="font-mono text-sm">
                 Organizing the chaos...
               </TextShimmer>
             </Tag>
           </Link>
 
-          <Banner.Title>
+          <Banner.Title className="py-2">
             Stay Aligned <br />
             Stay Connected.
           </Banner.Title>
