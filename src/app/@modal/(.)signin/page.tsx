@@ -10,8 +10,9 @@ import {
 } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
 
-function signInModal() {
+function SignInModal() {
   const router = useRouter();
+
   return (
     <Dialog defaultOpen onOpenChange={() => router.back()}>
       <DialogContent className="sm:max-w-[25rem]">
@@ -29,4 +30,4 @@ function signInModal() {
   );
 }
 
-export default signInModal;
+export default SignInModal;

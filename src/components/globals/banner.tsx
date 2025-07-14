@@ -1,5 +1,6 @@
 import Box from "@/components/ui/box";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import type { ComponentProps } from "react";
 
 function Banner({ ...props }: ComponentProps<"section">) {
@@ -57,8 +58,8 @@ Banner.CTA = function ({ ...props }: ComponentProps<typeof Box>) {
   );
 };
 
-Banner.OverlayImg = function ({ ...props }: ComponentProps<"img">) {
-  return <img {...props} className={cn("absolute -z-10", props.className)} />;
+Banner.OverlayImg = function ({ ...props }: ComponentProps<typeof Image>) {
+  return <Image {...props} className={cn("absolute -z-10", props.className)} />;
 };
 
 export default Banner;
