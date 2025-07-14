@@ -5,7 +5,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import SignInForm from "./_components/create-bay-form";
+import CreateBayForm from "./_components/create-bay-form";
 
 export const metadata = {
   title: "Cellar - Create A Bay For Your Company.",
@@ -26,7 +26,7 @@ function CreateBay() {
           Create a Bay and keep your team together
         </CardDescription>
       </CardHeader>
-      <SignInForm />
+      <CreateBayForm />
     </Card>
   );
 }
