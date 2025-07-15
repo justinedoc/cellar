@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 function CreateBayModal() {
   const router = useRouter();
   return (
-    <Dialog defaultOpen onOpenChange={() => router.push("/")}>
+    <Dialog defaultOpen onOpenChange={() => router.back()}>
       <DialogContent className="sm:max-w-[25rem]">
         <DialogHeader className="text-left">
           <DialogTitle className="font-bold text-3xl">
