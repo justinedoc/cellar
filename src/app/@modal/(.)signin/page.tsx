@@ -17,7 +17,7 @@ function SignInModal() {
     <Dialog defaultOpen onOpenChange={() => router.back()}>
       <DialogContent className="sm:max-w-[25rem]">
         <DialogHeader className="text-left">
-          <DialogTitle className=" font-bold text-3xl">
+          <DialogTitle className="font-bold text-3xl">
             Sign In
           </DialogTitle>
           <DialogDescription>

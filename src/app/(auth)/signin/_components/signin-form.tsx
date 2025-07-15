@@ -159,9 +159,9 @@ function FormDetails({
         />
 
         <div className="-mt-4 flex items-center justify-between text-sm">
-          <Link passHref href={"/forgot-password"}>
+          <Link href={"/forgot-password"}>
             <Button
-              asChild
+              type="button"
               size="sm"
               variant="link"
               className="text-muted-foreground"
@@ -197,8 +197,8 @@ function FormDetails({
 
         <p className="text-muted-foreground text-center text-sm">
           Don't have an account?{" "}
-          <Link passHref href="/signup">
-            <Button asChild variant={"link"} className="text-foreground px-1">
+          <Link href="/signup">
+            <Button type="button" variant={"link"} className="text-foreground px-1">
               Create one
             </Button>
           </Link>
