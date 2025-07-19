@@ -25,6 +25,7 @@ import {
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { signInUser } from "@/data/user/signin-user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowUpRight, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
@@ -33,7 +34,7 @@ import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
-import { resendOTP, signInUser, verifyOTP } from "../actions";
+import { resendOTP, verifyOTP } from "../actions";
 
 const OTPFormSchema = z.object({
   pin: z.string().min(6, {
@@ -89,17 +90,22 @@ function FormDetails({
 
   function onSubmit(values: TSignInForm) {
     startTransition(async () => {
-      const { message, success } = await signInUser(values);
+      try {
+        const { success, message } = await signInUser(values);
+        if (!success) {
+          toast.error(message);
+          return;
+        }
 
-      if (!success) {
-        toast.error(message);
-        return;
+        toast.success(message);
+        onHandleTabSwitch("form-otp");
+      } catch (err) {
+        console.error("Unexpected error in handleSubmission:", err);
+        toast.error("An unexpected error occurred. Please try again.");
       }
-
-      toast.success(message);
-      onHandleTabSwitch("form-otp");
     });
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -198,7 +204,11 @@ function FormDetails({
         <p className="text-muted-foreground text-center text-sm">
           Don't have an account?{" "}
           <Link href="/signup">
-            <Button type="button" variant={"link"} className="text-foreground px-1">
+            <Button
+              type="button"
+              variant={"link"}
+              className="text-foreground px-1"
+            >
               Create one
             </Button>
           </Link>
