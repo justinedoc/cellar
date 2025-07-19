@@ -11,6 +11,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { TSignUpCredentialsSchema } from "@/lib/schemas/auth/signup";
 import { cn } from "@/lib/utils";
 import { Check, ChevronLeft, Eye, EyeOff, X } from "lucide-react";
@@ -41,23 +48,66 @@ function SignUpCredentialsForm({
   isSubmitting: boolean;
 }) {
   const form = useFormContext<TSignUpCredentialsSchema>();
-  const [isPasswordHidden, setIsPasswordHidden] = useState(false);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const passwordValue = form.watch("password");
+
   return (
     <CardContent>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {SignUpCredentialsFields.slice(0, 2).map((f) => (
+          {/* Business Mobile Field */}
+          <FormField
+            control={form.control}
+            name="businessMobile"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor="businessMobile">Business Mobile</FormLabel>
+                <FormControl>
+                  <div className="border-input flex rounded-md border shadow-xs">
+                    <Select {...form.register("businessMobileCountry")}>
+                      <SelectTrigger
+                        id="businessMobileCountry"
+                        className="w-fit rounded-r-none border-0 border-e"
+                      >
+                        <SelectValue placeholder="+234" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem className="bg-background" value="+234">
+                          +234
+                        </SelectItem>
+                        <SelectItem className="bg-background" value="+1">
+                          +1
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    <Input
+                      id={field.name}
+                      type="tel"
+                      placeholder="80 4978 0956"
+                      className="flex-1 rounded-l-none border-none text-sm focus:ring-0"
+                      {...field}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Other credential fields */}
+          {SignUpCredentialsFields.slice(1, -1).map((f) => (
             <FormField
               key={f.name}
               control={form.control}
               name={f.name as keyof TSignUpCredentialsSchema}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{f.label}</FormLabel>
+                  <FormLabel htmlFor={f.name}>{f.label}</FormLabel>
                   <FormControl>
                     <Input
+                      id={f.name}
                       type={f.type}
                       placeholder={f.placeholder}
                       {...field}
@@ -69,29 +119,35 @@ function SignUpCredentialsForm({
             />
           ))}
 
+          {/* Password Field */}
           <FormField
             control={form.control}
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel htmlFor="password">Password</FormLabel>
                 <FormControl>
                   <div className="relative">
                     <Input
+                      id="password"
                       type={isPasswordHidden ? "password" : "text"}
                       placeholder="Enter your password"
                       {...field}
                     />
-                    <span
-                      className="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer text-sm"
-                      onClick={() => setIsPasswordHidden((cur) => !cur)}
+                    <button
+                      type="button"
+                      aria-label={
+                        isPasswordHidden ? "Show password" : "Hide password"
+                      }
+                      className="absolute inset-y-0 right-2 flex items-center text-sm"
+                      onClick={() => setIsPasswordHidden((v) => !v)}
                     >
-                      {isPasswordHidden ? <Eye /> : <EyeOff />}
-                    </span>
+                      {isPasswordHidden ? <EyeOff /> : <Eye />}
+                    </button>
                   </div>
                 </FormControl>
 
-                {/* Password Checks */}
+                {/* Password strength/checks */}
                 {passwordValue && (
                   <PasswordChecks
                     password={passwordValue}
@@ -104,23 +160,24 @@ function SignUpCredentialsForm({
             )}
           />
 
+          {/* Navigation Buttons */}
           <div className="flex items-center justify-between">
             <Button
               type="button"
               size="lg"
-              variant={"outline"}
+              variant="outline"
               onClick={onHandlePrevStep}
               className="rounded-full"
             >
-              <ChevronLeft /> Back
+              <ChevronLeft className="mr-2" /> Back
             </Button>
             <Button
               size="lg"
-              disabled={isSubmitting}
               type="submit"
+              disabled={isSubmitting}
               className="rounded-full"
             >
-              {isSubmitting ? "Signing up..." : "Signup"}
+              {isSubmitting ? "Signing up..." : "Sign up"}
             </Button>
           </div>
         </form>

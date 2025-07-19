@@ -10,8 +10,15 @@ export const SignupDetailsSchema = z.object({
 export const SignUpCredentialsSchema = z.object({
   businessMobile: z
     .string()
-    .min(10, "Business Mobile must be at least 10 characters long"),
-  proPositions: z.string().min(1, { message: "Professional Position is required" }),
+    .min(10, "Business Mobile must be at least 10 characters long")
+    .regex(/^\d+$/, { message: "Business Mobile must contain only numbers" })
+    .transform((val) => (val.startsWith("0") ? val.slice(1) : String(val))),
+  businessMobileCountry: z
+    .string()
+    .min(1, { message: "Country code is required" }),
+  proPositions: z
+    .string()
+    .min(1, { message: "Professional Position is required" }),
   password: z.string().min(6, "Password must be at least 6 characters long"),
 });
 

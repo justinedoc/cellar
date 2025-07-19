@@ -100,6 +100,7 @@ function SignUpFormsWrapper({ as }: { as: "card" | "dialog" }) {
     mode: "onChange",
     defaultValues: {
       businessMobile: "",
+      businessMobileCountry: "+234",
       proPositions: "Worker",
       password: "",
     },
@@ -127,6 +128,8 @@ function SignUpFormsWrapper({ as }: { as: "card" | "dialog" }) {
         toast.error(message);
         return;
       }
+
+      console.log(userData);
 
       toast.success(message);
       router.push("/");
